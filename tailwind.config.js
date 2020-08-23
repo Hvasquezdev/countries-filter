@@ -13,6 +13,10 @@ module.exports = {
       display: ['Nunito', 'sans-serif'],
       body: ['Nunito', 'sans-serif'],
     },
+    borderRadius: {
+      'none': '0',
+      default: '8px',
+    },
     extend: {
       colors: {
         'color-1': 'hsl(209, 23%, 22%)', // - color-1 (Dark Mode Elements): hsl(209, 23%, 22%)
