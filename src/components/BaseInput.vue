@@ -29,14 +29,13 @@ export default {
     }
   },
 
-  setup(props, { emit, attrs }) {
+  setup(props, { emit }) {
     const onInput = (e) => {
       emit('update:query', e.target.value)
     }
 
     return {
-      onInput,
-      attrs
+      onInput
     }
   }
 }
@@ -46,7 +45,7 @@ export default {
 .base-input {
   background-color: var(--bg-elements);
   color: var(--color-text);
-  box-shadow: 0 0 6px var(--bg-page);
+  box-shadow: 0 0 6px var(--shadow-color);
   font-size: 18px;
   text-align: left;
 }

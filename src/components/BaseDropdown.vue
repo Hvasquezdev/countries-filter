@@ -87,14 +87,14 @@ export default {
 .base-dropdown .dropdown-target {
   background-color: var(--bg-elements);
   color: var(--color-text);
-  box-shadow: 0 0 6px var(--bg-page);
+  box-shadow: 0 0 6px var(--shadow-color);
   font-size: 18px;
   text-align: left;
 }
 .base-dropdown .dropdown-list {
   background-color: var(--bg-elements);
   color: var(--color-text);
-  box-shadow: 0 0 6px var(--bg-page);
+  box-shadow: 0 0 6px var(--shadow-color);
   font-size: 16px;
   text-align: left;
 }

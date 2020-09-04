@@ -42,7 +42,7 @@ export default {
   max-width: 420px;
   background-color: var(--bg-elements);
   color: var(--color-text);
-  box-shadow: 0 0 6px var(--bg-page);
+  box-shadow: 0 0 6px var(--shadow-color);
 }
 .country-card img {
   border-top-left-radius: 8px;

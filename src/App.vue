@@ -1,12 +1,12 @@
 <template>
-  <div :class="[`${theme}-theme`]" class="app-wrapper w-full h-full flex flex-col">
-    <the-navbar />
+  <div :class="[`${state.theme}-theme`]" class="app-wrapper w-full h-full flex flex-col">
+    <the-navbar @update-theme="onUpdateTheme" />
     <router-view />
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import TheNavbar from './components/TheNavbar.vue'
 
 export default {
@@ -17,10 +17,18 @@ export default {
   },
 
   setup() {
-    const theme = ref('dark')
+    let state = reactive({
+      theme: 'dark'
+    })
+
+    const onUpdateTheme = (isDark) => {
+      state.theme = isDark === true || isDark == 'true' ? 'dark' : 'light'
+      console.log(state.theme, isDark)
+    }
 
     return {
-      theme
+      state,
+      onUpdateTheme
     }
   }
 }
@@ -28,12 +36,19 @@ export default {
 
 <style>
 .app-wrapper {
-  --bg-elements: theme('colors.color-1');
-  --bg-page: theme('colors.color-2');
-  --color-text: theme('colors.color-6');
+  --bg-elements: theme('colors.color-6');
+  --bg-page: theme('colors.color-5');
+  --color-text: theme('colors.color-3');
+  --shadow-color: theme('colors.color-7');
 
   min-height: 100vh;
   background-color: var(--bg-page);
   color: var(--color-text);
+}
+.app-wrapper.dark-theme {
+  --bg-elements: theme('colors.color-1');
+  --bg-page: theme('colors.color-2');
+  --color-text: theme('colors.color-6');
+  --shadow-color: theme('colors.color-2');
 }
 </style>
