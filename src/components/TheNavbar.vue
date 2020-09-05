@@ -6,6 +6,7 @@
       </h1>
     </div>
     <div class="right-nav">
+      <span class="theme-text mr-3">{{ state.isDark ? 'Dark' : 'Light' }} Theme</span>
       <base-switch :value="state.isDark" @change="onChange" />
     </div>
   </div>
