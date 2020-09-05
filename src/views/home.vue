@@ -25,6 +25,7 @@
 
 <script>
 import { reactive, computed, readonly, onMounted } from 'vue'
+import { useFetch } from '../hooks/usefetch.js'
 import CountryCard from '../components/CountryCard.vue'
 import BaseDropdown from '../components/BaseDropdown.vue'
 import BaseInput from '../components/BaseInput.vue'
@@ -40,7 +41,6 @@ export default {
 
   setup() {
     const state = reactive({
-      countries: [],
       regions: [
         'Africa',
         'Americas',
@@ -51,13 +51,15 @@ export default {
       selectedFilter: null,
       searchQuery: ''
     })
+    const stateFetch = useFetch('https://restcountries.eu/rest/v2/all')
 
+    const countries = computed(() => stateFetch.response || [])
+  
     const filteredContries = computed(() => {
       const selectedFilter = state.selectedFilter
-      const countries = state.countries
       const searchQuery = state.searchQuery.toLowerCase()
 
-      const filteredData = countries.filter((country) => {
+      const filteredData = countries.value.filter((country) => {
         const target = selectedFilter
           ? country.region === selectedFilter
           : country
@@ -70,22 +72,9 @@ export default {
       return filteredData
     })
 
-    const getCountries = () => {
-      fetch('https://restcountries.eu/rest/v2/all')
-        .then(response => response.json())
-        .then(data => {
-          state.countries = data
-          console.log(data)
-        })
-    }
-
     const onSelectedFilter = (filter) => {
       state.selectedFilter = filter
     }
-
-    onMounted(() => {
-      getCountries()
-    })
 
     return {
       state,
